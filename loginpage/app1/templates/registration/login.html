@@ -1,0 +1,36 @@
+{% extends "registration/base.html" %}
+{% block con %}
+<div class='shadow_wrap'>
+    <div class='form_wrap'>
+        <h1 >WELCOME to</h1>
+        <h2 style='padding:10px 40px;color:green'> My website</h2>
+        <h3>Login</h3>
+        <form method='POST'>
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+            </div>
+            <div>
+                <label for="{{ form.password.id_for_label }}">Password:</label>
+                {{ form.password }}
+            </div>
+            {% if form.errors %}
+                <div style="color: red;">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <p>{{ field.errors.as_text }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <p>{{ form.non_field_errors }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+            
+            <button type='submit'>Submit</button>
+        </form>
+        <a class='signup_link' href="{% url 'app1:authview' %}">Signup</a>
+    </div>
+</div>
+{% endblock con %}

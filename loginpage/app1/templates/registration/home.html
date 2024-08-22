@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: grey;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: grey;
+            box-shadow:  rgba(0, 0, 0, 0.1);
+        }
+
+        .about-me {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        .current-studies {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <a href='{% url "app1:login" %}'>
+        <button class="logout-button" onclick="window.location.href='/logout/'">Logout</button></a>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2>About Me</h2>
+        <p class="about-me">
+            Hello! My name is Sayyed Rabeeh, and I am a passionate web developer with a love for programming. I enjoy learning new technologies. When I'm not coding, I like to watch movies and explore new places.
+        </p>
+
+        <div class="current-studies">
+            <h3>Current Studies</h3>
+            <p>
+                I am currently studying at Brocamp as a trainee in my 4th week. My domain is Python, and I am gaining experience in various aspects of Python programming and development.
+            </p>
+        </div>
+
+         
+    </div>
+
+    <footer>
+        <p>&copy; 2024 My Web</p>
+    </footer>
+</body>
+</html>
