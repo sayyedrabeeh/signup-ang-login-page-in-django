@@ -7,129 +7,212 @@
     <title>Home Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #e0e0e0;
+            color: #333;
         }
 
         header {
-            background-color: green;
-            color: white;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             text-align: center;
-            padding: 1rem;
+            padding: 20px 0;
             position: relative;
         }
 
         header h1 {
             margin: 0;
+            font-size: 2.5em;
         }
 
         .logout-button {
             position: absolute;
-            top: 50%;
+            top: 20px;
             right: 20px;
-            transform: translateY(-50%);
-            background-color: #f44336;
+            background-color: #e74c3c;
             color: white;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
             font-size: 16px;
+            border-radius: 5px;
         }
 
         nav {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px;
+            background-color: #34495e;
+            padding: 10px 0;
         }
 
         nav a {
             margin: 0 15px;
-            color: grey;
+            color: #ecf0f1;
             text-decoration: none;
             font-weight: bold;
+            padding: 5px 10px;
+            cursor: pointer;
         }
 
         nav a:hover {
-            color: #4CAF50;
+            background-color: #2980b9;
+            border-radius: 5px;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
             padding: 20px;
-            background-color: grey;
-            box-shadow:  rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-        .about-me {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 2;
+        .section:hover {
+            transform: translateY(-10px);
         }
 
-        .current-studies {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 2;
-        }
-
-        .image-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .image-container img {
-            max-width: 45%;
+        .section img {
+            max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .section h3 {
+            margin: 10px 0;
+            font-size: 1.8em;
+            color: #2980b9;
+        }
+
+        .section p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #7f8c8d;
+        }
+
+        .section .price {
+            font-size: 1.5em;
+            color: #27ae60;
+            margin-top: 10px;
+        }
+
+        .services, .about, .contact {
+            display: none;
         }
 
         footer {
-            background-color: green;
-            color: white;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            padding: 20px;
+            position: relative;
+            margin-top: 40px;
         }
     </style>
+    <script>
+        function showSection(section) {
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.services').style.display = 'none';
+            document.querySelector('.about').style.display = 'none';
+            document.querySelector('.contact').style.display = 'none';
+
+            document.querySelector(`.${section}`).style.display = 'block';
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Website</h1>
+        <h1>My Products</h1>
+    
         <a href='{% url "app1:login" %}'>
         <button class="logout-button" onclick="window.location.href='/logout/'">Logout</button></a>
     </header>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <a href="#" onclick="showSection('container')">Home</a>
+        <a href="#" onclick="showSection('about')">About</a>
+        <a href="#" onclick="showSection('services')">Services</a>
+        <a href="#" onclick="showSection('contact')">Contact</a>
     </nav>
 
     <div class="container">
-        <h2>About Me</h2>
-        <p class="about-me">
-            Hello! My name is Sayyed Rabeeh, and I am a passionate web developer with a love for programming. I enjoy learning new technologies. When I'm not coding, I like to watch movies and explore new places.
-        </p>
-
-        <div class="current-studies">
-            <h3>Current Studies</h3>
-            <p>
-                I am currently studying at Brocamp as a trainee in my 4th week. My domain is Python, and I am gaining experience in various aspects of Python programming and development.
-            </p>
+        <div class="section">
+            <img src="{% static 'images/product1.jpeg' %}" alt="Product 1">
+            
+            <h3>Product 1</h3>
+            <p>A high-quality product that meets all your needs.</p>
+            <p class="price">$69.99</p>
         </div>
+        <div class="section">
+            <img src="{% static 'images/product2.webp' %}" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>Experience the excellence of our second product.</p>
+            <p class="price">$59.99</p>
+        </div>
+        <div class="section">
+            <img src="{% static 'images/product3.webp' %}" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>A perfect addition to your collection.</p>
+            <p class="price">$49.99</p>
+        </div>
+        <div class="section">
+            <img src="{% static 'images/product4.webp' %}" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>Discover the quality of our fourth product.</p>
+            <p class="price">$39.99</p>
+        </div>
+        <div class="section">
+            <img src="{% static 'images/product5.jpeg' %}" alt="Product 5">
+            <h3>Product 5</h3>
+            <p>A reliable product you can trust.</p>
+            <p class="price">$29.99</p>
+        </div>
+        <div class="section">
+            <img src="{% static 'images/product6.webp' %}" alt="Product 6">
+            <h3>Product 6</h3>
+            <p>Experience top performance with this product.</p>
+            <p class="price">$19.99</p>
+        </div>
+    </div>
 
-         
+    <div class="services">
+        <h2>Our Services</h2>
+        <p>We offer a wide range of services to meet your needs, including:</p>
+        <ul>
+            <li>Custom web development</li>
+            <li>Mobile app development</li>
+            <li>Web Design</li>
+
+        </ul>
+    </div>
+
+    <div class="about">
+        <h2>About Us</h2>
+        <p>We are a leading company in providing high-quality products and services that cater to your specific needs. Our mission is to deliver excellence in every project we undertake.</p>
+    </div>
+
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need further information, please feel free to reach out to us at:</p>
+        <p>Email: myproducts@gmail.com</p>
+        <p>Phone: +1 908 809 9089</p>
     </div>
 
     <footer>
-        <p>&copy; 2024 My Web</p>
+        <p>&copy; 2024 My Products</p>
     </footer>
 </body>
 </html>
