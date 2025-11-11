@@ -1,0 +1,36 @@
+{% extends "registration/base.html" %}
+
+{% block con %}
+<div class='shadow_wrap'>
+    <div class='form_wrap'>
+        <h3>Sign Up</h3>
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div>
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <button type='submit'>Submit</button>
+        </form>
+        <a class='signup_link' href="{% url 'app1:login' %}">Login</a>
+    </div>
+</div>
+{% endblock con %}
